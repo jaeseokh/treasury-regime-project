@@ -1,0 +1,303 @@
+{
+  "system_version": "v1.0",
+  "version_label": "Treasury Regime Lab Version 1",
+  "as_of": "2026-04-20",
+  "purpose": "Track the current research architecture, the known limitations in version 1, and the next upgrades required for a stronger regime-first Treasury strategy system.",
+  "maintenance_rule": "Keep the hierarchy fixed unless the research architecture truly changes. Add problems under the affected layer, then attach planned upgrades with priority, rationale, and success metrics.",
+  "review_cadence": {
+    "daily": "Log data failures, suspicious posterior moves, broken exports, and source-ingestion problems.",
+    "weekly": "Review model calibration, player-path quality, and website communication gaps.",
+    "monthly": "Re-rank upgrade priorities, revise success metrics, and decide whether a version step is required."
+  },
+  "principles": [
+    "Economic regime path is the structural core.",
+    "Treasury market is the fastest observation mirror, not the regime itself.",
+    "Shock and player behavior are stochastic drivers that bend or accelerate the regime path.",
+    "Each improvement should be attached to a specific layer and tested against a clear success metric."
+  ],
+  "hierarchy": [
+    {
+      "layer_id": "L1_regime_core",
+      "order": 1,
+      "title": "Economic Regime Core",
+      "role": "Define the fixed regime dictionary, admissible transition graph, and the structural ontology of the project.",
+      "current_status": "operational_v1",
+      "v1_scope": [
+        "Fixed six-node regime dictionary",
+        "Sparse transition matrix",
+        "Daily posterior updates over the same regime graph"
+      ],
+      "known_problems": [
+        "The regime posterior can collapse too quickly toward one dominant state.",
+        "Transition persistence is hand-tuned rather than empirically estimated.",
+        "The current regime set is useful but still coarse for a full macro-financial history."
+      ],
+      "next_upgrades": [
+        {
+          "upgrade_id": "REG-101",
+          "title": "Calibrate posterior persistence and confidence",
+          "priority": "high",
+          "status": "planned",
+          "problem": "Regime probabilities currently become too certain under strong heuristic channel scores.",
+          "planned_change": "Add persistence penalties, temperature control, and historical calibration tests so the posterior remains informative rather than overconfident.",
+          "why_it_matters": "A strategist-facing system must show uncertainty honestly, especially during transition periods.",
+          "success_metric": "Dominant regime rarely exceeds 85-90% unless multiple channels align persistently over time."
+        },
+        {
+          "upgrade_id": "REG-102",
+          "title": "Extend regime dictionary by historical validation",
+          "priority": "medium",
+          "status": "planned",
+          "problem": "The current regime dictionary is interpretable but still compact for historical regime analysis.",
+          "planned_change": "Stress-test the six-node map against historical episodes and add sub-regimes only where they improve explanatory power.",
+          "why_it_matters": "A hiring-manager-facing research system needs a defensible ontology, not ad hoc labels.",
+          "success_metric": "Historical event mapping improves without creating an overly fragmented regime space."
+        }
+      ]
+    },
+    {
+      "layer_id": "L2_treasury_observation",
+      "order": 2,
+      "title": "Treasury Observation Layer",
+      "role": "Translate public fixed-income data into a rich market state using curve shape, inflation decomposition, funding, issuance, and bond-risk measures.",
+      "current_status": "operational_v1",
+      "v1_scope": [
+        "Daily curve, real yields, breakevens, flies, and Nelson-Siegel factors",
+        "Rolling VAR-style term-premium proxy",
+        "Cash-flow-based par-bond duration, convexity, and DV01"
+      ],
+      "known_problems": [
+        "The term-premium model is more defensible than the old proxy but it is still not an ACM-grade term-structure model.",
+        "Funding and repo signals are useful but still public-proxy level rather than true market microstructure depth.",
+        "Treasury strategy translation is descriptive and not yet tied to explicit scenario P&L."
+      ],
+      "next_upgrades": [
+        {
+          "upgrade_id": "TSY-201",
+          "title": "Upgrade term premium from VAR-style proxy to affine term-structure model",
+          "priority": "high",
+          "status": "planned",
+          "problem": "The long-end interpretation still depends on a simplified expectation engine.",
+          "planned_change": "Implement an ACM-style or state-space affine term-premium estimation workflow.",
+          "why_it_matters": "This is the main quantitative bridge between macro narrative and long-end Treasury interpretation.",
+          "success_metric": "10Y and 30Y term-premium measures become historically stable and economically interpretable across stress periods."
+        },
+        {
+          "upgrade_id": "TSY-202",
+          "title": "Add explicit Treasury trade and hedge translation",
+          "priority": "high",
+          "status": "planned",
+          "problem": "The site explains the curve well but still stops short of a scenario-by-scenario Treasury trade map.",
+          "planned_change": "Add scenario DV01, steepener/flattening exposure, breakeven sensitivity, and representative hedge templates.",
+          "why_it_matters": "A macro strategist must connect regime logic to risk-taking and risk management.",
+          "success_metric": "Each daily note can map the dominant regime path into concrete Treasury positioning language."
+        },
+        {
+          "upgrade_id": "TSY-203",
+          "title": "Deepen Treasury plumbing signals",
+          "priority": "medium",
+          "status": "planned",
+          "problem": "Auction and repo coverage is informative but still incomplete.",
+          "planned_change": "Add richer auction internals, dealer statistics, investor allotment splits, and higher-quality repo/funding stress proxies.",
+          "why_it_matters": "This reduces the chance of mistaking market distortion for regime change.",
+          "success_metric": "The system more reliably separates supply/funding stress from structural macro repricing."
+        }
+      ]
+    },
+    {
+      "layer_id": "L3_shock_evidence",
+      "order": 3,
+      "title": "Shock and Evidence Layer",
+      "role": "Classify shocks ex post from credible sources and turn speeches, reports, and releases into structured evidence claims.",
+      "current_status": "operational_v1",
+      "v1_scope": [
+        "Official Fed and Treasury evidence ingestion",
+        "Manual media claim overrides",
+        "Dominant shock and secondary shock assignment"
+      ],
+      "known_problems": [
+        "Media evidence still depends on manual summaries rather than a richer workflow.",
+        "Claim extraction is structured but still relatively shallow in language interpretation.",
+        "Shock severity and persistence are heuristic rather than formally estimated."
+      ],
+      "next_upgrades": [
+        {
+          "upgrade_id": "EV-301",
+          "title": "Formalize evidence claim scoring by channel and horizon",
+          "priority": "high",
+          "status": "planned",
+          "problem": "Evidence enters the system, but its forward usefulness is not yet rich enough by claim type.",
+          "planned_change": "Score claim direction, transmission channel, and persistence separately for D+1, W+1, and M+1.",
+          "why_it_matters": "This tells you which evidence sources deserve trust at each horizon.",
+          "success_metric": "Source scorecards clearly distinguish fast tactical sources from slower regime-relevant sources."
+        },
+        {
+          "upgrade_id": "EV-302",
+          "title": "Improve shock persistence estimation",
+          "priority": "medium",
+          "status": "planned",
+          "problem": "Shock persistence is still attached with a simple heuristic score.",
+          "planned_change": "Estimate persistence from realized market follow-through and source-confirmation behavior.",
+          "why_it_matters": "Shock duration is central to whether a move should reshape the regime path or fade quickly.",
+          "success_metric": "Shock half-life tracking becomes more stable across repeated event types."
+        }
+      ]
+    },
+    {
+      "layer_id": "L4_player_response",
+      "order": 4,
+      "title": "Player Response Layer",
+      "role": "Infer stochastic action paths for Treasury, Fed, sell side, buy side, and foreign official players across horizons.",
+      "current_status": "operational_v1",
+      "v1_scope": [
+        "Five-player action menus",
+        "Short, mid, and long horizon player probabilities",
+        "Structured scenario text in the daily note"
+      ],
+      "known_problems": [
+        "Player probabilities are currently rule-based rather than estimated with hierarchical statistical models.",
+        "Sell-side and buy-side behavior is still captured through broad public proxies.",
+        "The model does not yet learn how player-path quality changes across shock categories."
+      ],
+      "next_upgrades": [
+        {
+          "upgrade_id": "PLY-401",
+          "title": "Estimate player actions with hierarchical Bayesian models",
+          "priority": "high",
+          "status": "planned",
+          "problem": "Player behavior is still governed by heuristics tied to feature scores.",
+          "planned_change": "Replace hand-tuned action weights with horizon-specific hierarchical multinomial models.",
+          "why_it_matters": "Player probabilities should become a measurable stochastic process, not just a narrative overlay.",
+          "success_metric": "Player-path forecasts improve in calibration and ex-post scoring across multiple horizons."
+        },
+        {
+          "upgrade_id": "PLY-402",
+          "title": "Separate fast dealer behavior from slower investor behavior more cleanly",
+          "priority": "medium",
+          "status": "planned",
+          "problem": "The current player timing logic is conceptually correct but still too broad in the observed proxy layer.",
+          "planned_change": "Add dealer and investor timing priors plus proxy-specific adjustment rules.",
+          "why_it_matters": "Treasury market moves often reflect different reaction speeds by player type.",
+          "success_metric": "The system better distinguishes flow-amplification days from slower allocation-driven regime shifts."
+        }
+      ]
+    },
+    {
+      "layer_id": "L5_statistical_engine",
+      "order": 5,
+      "title": "Statistical and ML Engine",
+      "role": "Coordinate Bayesian updates, factor extraction, calibration, forecast review, and the supporting econometric logic.",
+      "current_status": "operational_v1",
+      "v1_scope": [
+        "Source-decomposed Bayesian update",
+        "Nelson-Siegel state extraction",
+        "Rolling VAR-style expected short-rate path"
+      ],
+      "known_problems": [
+        "The engine combines good ingredients but still lacks a full state-space backbone.",
+        "Some scores are still hand-crafted and not estimated jointly.",
+        "Model-risk monitoring is not yet explicit enough."
+      ],
+      "next_upgrades": [
+        {
+          "upgrade_id": "ML-501",
+          "title": "Move from channel heuristics toward a state-space regime engine",
+          "priority": "high",
+          "status": "planned",
+          "problem": "The current posterior is coherent but still partly built from deterministic channel scores.",
+          "planned_change": "Introduce a sticky HMM or hidden semi-Markov framework with exogenous shock and Treasury inputs.",
+          "why_it_matters": "This is the natural next step for a more rigorous latent-regime system.",
+          "success_metric": "Posterior dynamics become smoother, more persistent, and better calibrated through time."
+        },
+        {
+          "upgrade_id": "ML-502",
+          "title": "Add model-risk and diagnostics dashboard",
+          "priority": "medium",
+          "status": "planned",
+          "problem": "The system reports outputs, but it does not yet show enough model-risk diagnostics to the user.",
+          "planned_change": "Track calibration drift, unstable coefficients, missing-data dependence, and posterior jump diagnostics.",
+          "why_it_matters": "A serious research process should reveal where the model is fragile.",
+          "success_metric": "Research reviews can identify whether a bad call came from data, model structure, or interpretation."
+        }
+      ]
+    },
+    {
+      "layer_id": "L6_review_memory",
+      "order": 6,
+      "title": "Forecast Review and Memory",
+      "role": "Keep score on regime calls, player scenarios, shock persistence, and evidence-source usefulness across horizons.",
+      "current_status": "operational_v1",
+      "v1_scope": [
+        "Regime review ledger",
+        "Source scorecard",
+        "Daily/weekly/monthly evaluation concept"
+      ],
+      "known_problems": [
+        "Forecast memory exists but is still shallow because the archive is young.",
+        "Scenario hit-rate scoring is not yet differentiated enough by object type.",
+        "There is no explicit error taxonomy attached to each forecast miss."
+      ],
+      "next_upgrades": [
+        {
+          "upgrade_id": "REV-601",
+          "title": "Add explicit miss taxonomy and forecast attribution",
+          "priority": "high",
+          "status": "planned",
+          "problem": "When the model is wrong, the current review outputs do not fully distinguish whether the mistake came from the regime call, the shock call, or the player weighting.",
+          "planned_change": "Log misses as wrong regime, wrong transmission, wrong persistence, wrong player weighting, or exogenous break.",
+          "why_it_matters": "This is how the system improves rather than just accumulates notes.",
+          "success_metric": "Each major miss can be tied to a specific architectural weakness and upgrade path."
+        },
+        {
+          "upgrade_id": "REV-602",
+          "title": "Make forecast memory visible on the site",
+          "priority": "medium",
+          "status": "planned",
+          "problem": "The public site shows current outputs well, but the cumulative learning process is still understated.",
+          "planned_change": "Add a dedicated memory view for scenario emergence, fade, and ex-post source performance.",
+          "why_it_matters": "This proves the research process is disciplined rather than one-day narrative writing.",
+          "success_metric": "A visitor can understand how the system learns over time without reading raw data files."
+        }
+      ]
+    },
+    {
+      "layer_id": "L7_website_and_communication",
+      "order": 7,
+      "title": "Website and Communication Layer",
+      "role": "Turn the research system into a manager-facing presentation that is clean, credible, and easy to scan from a resume link.",
+      "current_status": "operational_v1",
+      "v1_scope": [
+        "Manager-facing homepage",
+        "Framework, archive, and research pages",
+        "Static website payload export from the Python pipeline"
+      ],
+      "known_problems": [
+        "The site communicates the current system well, but it still needs a stronger explanation of what will improve next.",
+        "The visuals are clear, but some analytical layers are still summarized rather than fully visualized.",
+        "There is no explicit public roadmap page in version 1 yet."
+      ],
+      "next_upgrades": [
+        {
+          "upgrade_id": "WEB-701",
+          "title": "Expose the version map and research roadmap publicly",
+          "priority": "high",
+          "status": "in_progress",
+          "problem": "A manager can see the current output, but not the structured path of future improvements.",
+          "planned_change": "Publish the version map, hierarchy, known limits, and upgrade queue on the site.",
+          "why_it_matters": "This signals that the research process is iterative, disciplined, and self-aware.",
+          "success_metric": "A visitor can see both what the system already does and where the next improvements will land."
+        },
+        {
+          "upgrade_id": "WEB-702",
+          "title": "Add richer fixed-income charts and scenario visuals",
+          "priority": "medium",
+          "status": "planned",
+          "problem": "The current site is informative, but it still compresses some of the best fixed-income content into text or tables.",
+          "planned_change": "Add dedicated curve-factor, term-premium, and player-scenario visualizations.",
+          "why_it_matters": "Clear visuals make the research more legible to busy managers and recruiters.",
+          "success_metric": "The most important regime and Treasury interpretations are visible without reading long notes."
+        }
+      ]
+    }
+  ]
+}
