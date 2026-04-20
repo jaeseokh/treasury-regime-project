@@ -242,7 +242,7 @@
           "upgrade_id": "REV-601",
           "title": "Add explicit miss taxonomy and forecast attribution",
           "priority": "high",
-          "status": "planned",
+          "status": "in_progress",
           "problem": "When the model is wrong, the current review outputs do not fully distinguish whether the mistake came from the regime call, the shock call, or the player weighting.",
           "planned_change": "Log misses as wrong regime, wrong transmission, wrong persistence, wrong player weighting, or exogenous break.",
           "why_it_matters": "This is how the system improves rather than just accumulates notes.",
