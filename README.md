@@ -1,41 +1,89 @@
 # Treasury Regime Lab
 
-Treasury Regime Lab is a regime-first research system for U.S. Treasury strategy.
-It treats the latent economic regime path as the core state, uses the Treasury
-market as the fastest observation surface, classifies shocks from official and
-curated evidence, updates player response probabilities, and exports a
-manager-facing daily dashboard for a GitHub Pages website.
+Regime-first Treasury market research for macro strategy, fixed-income decision
+support, and hiring-manager-facing communication.
 
-## Core Design
+This repository models the `economic regime path` as the core latent state,
+uses the Treasury market as the fastest observation mirror, classifies shocks
+from official and curated evidence, updates five-player response paths, and
+exports a daily dashboard for a public GitHub Pages site.
 
-- `Economic regime path` is the structural backbone.
-- `Shock state` and `player response state` are stochastic drivers that bend or
-  accelerate the regime path.
-- `Treasury market data` is the main real-time inference channel.
-- `Official sources` and `curated media notes` provide structured evidence
-  rather than free-form narrative.
-- `Curve math` includes Nelson-Siegel factors, butterfly structure, a rolling
-  VAR-style term-premium decomposition, and cash-flow-based par-bond risk.
-- `Daily, weekly, and monthly review` keeps score on scenarios, player paths,
-  and source credibility.
+Public website:
+[jaeseokh.github.io](https://jaeseokh.github.io/)
 
-## Project Layout
+## Why this project exists
 
-- `src/treasury_regime/agents`: multi-agent pipeline modules
-- `src/treasury_regime/modeling`: regime dictionary, Bayesian updates, and
-  market features
-- `src/treasury_regime/sources`: public API and official source clients
-- `src/treasury_regime/pipelines`: daily update and website export orchestration
-- `data/raw`: downloaded market, auction, and official-source datasets
-- `data/processed`: derived features and structured evidence
-- `data/manual`: hand-curated media claims or source overrides
-- `data/manual/research_upgrade_map.json`: version map, known problems, and upgrade queue
-- `docs/V1_RESEARCH_MAP.md`: human-readable maintenance rule for the hierarchy
-- `outputs`: reports, posteriors, archive tables, and website-ready JSON
+Most market dashboards describe what moved. This project is built to answer a
+harder question:
 
-## Daily Workflow
+`What changed in the economic regime path, which shock or player behavior bent
+that path, and what does that imply for Treasury strategy?`
+
+The intended audience is:
+
+- macro research managers
+- Treasury strategy heads
+- buy-side and sell-side hiring teams
+- researchers who need a disciplined regime-to-strategy workflow
+
+## What Version 1 does
+
+- defines a fixed `economic regime dictionary` and sparse transition graph
+- updates regime probabilities daily with a `source-decomposed Bayesian update`
+- treats the Treasury market as the main real-time inference layer
+- classifies shocks from official and curated evidence
+- estimates five-player response probabilities across short, mid, and long horizons
+- computes curve math including:
+  - Nelson-Siegel level, slope, and curvature
+  - butterfly structure
+  - breakeven and real-yield decomposition
+  - rolling VAR-style term-premium proxy
+  - cash-flow-based par-bond duration, convexity, and DV01
+- exports a manager-facing dashboard payload for the website
+- tracks versioned research limitations and the upgrade queue
+
+## Research architecture
+
+The system is intentionally hierarchical:
+
+1. `Economic regime core`
+2. `Treasury observation layer`
+3. `Shock and evidence layer`
+4. `Player response layer`
+5. `Statistical and ML engine`
+6. `Forecast review and memory`
+7. `Website and communication layer`
+
+The main design rule is simple:
+
+- `regime path` is the structural backbone
+- `shock` and `player behavior` are stochastic drivers
+- `Treasuries` are the fastest mirror, not the regime itself
+
+## Repository layout
+
+- `src/treasury_regime/agents`
+  Daily pipeline agents for data, evidence, shock, regime, player, review, and reporting
+- `src/treasury_regime/modeling`
+  Regime dictionary, Bayesian update logic, curve math, and market-feature engineering
+- `src/treasury_regime/sources`
+  Public API clients and official-source ingestion
+- `src/treasury_regime/pipelines`
+  Daily update and website export orchestration
+- `data/manual`
+  Manual media claims and the versioned research upgrade map
+- `docs/V1_RESEARCH_MAP.md`
+  Human-readable maintenance rule for versioned improvement
+
+## Quick start
+
+Create a Python environment, install the dependencies, then run the daily
+pipeline.
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 python3 run_daily_update.py
 ```
 
@@ -50,30 +98,56 @@ This runs:
 7. `ReportAgent`
 8. `Website export`
 
-## Website Sync
+## Key outputs
+
+- `outputs/daily_report.md`
+  Daily Treasury regime note
+- `outputs/daily_summary.json`
+  Structured daily snapshot
+- `outputs/posterior_history.csv`
+  Regime posterior history
+- `outputs/player_probabilities.csv`
+  Player scenario probabilities
+- `outputs/shock_history.csv`
+  Shock classification history
+- `outputs/research_upgrade_map.json`
+  Versioned roadmap and known limitations
+
+## Website sync
 
 The pipeline exports static JSON payloads to:
 
 `/Users/jaeseokhwang/jaeseok_website/assets/data`
 
-The website itself is a static GitHub Pages site that reads those payloads.
+The website is a separate GitHub Pages repository that reads those payloads and
+renders the public dashboard.
 
-## Manual Evidence Notes
+## Evidence policy
 
-Optional curated notes can be added to:
+Official sources and your own structured summaries belong in the system.
+Reuters/Bloomberg text should be summarized and cited rather than republished
+verbatim.
+
+Optional curated notes live in:
 
 `data/manual/manual_media_claims.json`
 
-This is where Reuters/Bloomberg summaries should live if you want them included
-without republishing proprietary text. Store your own summary, a citation URL,
-and structured claim fields.
+## Versioning and maintenance
 
-## Versioning And Research Maintenance
+This repository should be treated as `version 1`, not as a finished product.
 
-This build should be treated as `version 1`.
-The hierarchy, known limitations, and next upgrades are tracked in:
+The machine-readable source of truth for research maintenance is:
 
 `data/manual/research_upgrade_map.json`
 
-When the system needs improvement, update the affected layer there first rather
-than adding disconnected notes or ad hoc TODOs.
+When the system needs improvement:
+
+1. identify the affected layer
+2. log the known problem
+3. attach the planned change
+4. define why it matters
+5. define the success metric
+
+That process is described in more detail in:
+
+`docs/V1_RESEARCH_MAP.md`
