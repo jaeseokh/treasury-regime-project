@@ -90,6 +90,17 @@ def export_website_payloads(
     archive_payload = {
         "notes": history.sort_values("date", ascending=False).head(90).to_dict(orient="records") if not history.empty else [],
         "regime_review": regime_review.to_dict(orient="records"),
+        "miss_summary": (
+            regime_review.groupby(["target_horizon", "miss_type"], as_index=False)
+            .agg(
+                observations=("miss_type", "size"),
+                avg_directional_accuracy=("directional_accuracy", "mean"),
+            )
+            .sort_values(["target_horizon", "observations"], ascending=[True, False])
+            .to_dict(orient="records")
+            if not regime_review.empty and "miss_type" in regime_review.columns
+            else []
+        ),
     }
     framework_payload = {
         "regimes": REGIME_DEFINITIONS,

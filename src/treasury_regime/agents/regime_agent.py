@@ -6,9 +6,9 @@ import numpy as np
 import pandas as pd
 
 from treasury_regime.config import HORIZONS
-from treasury_regime.modeling.bayes import combine_prior_and_channels, row_normalize
+from treasury_regime.modeling.bayes import combine_prior_and_channels, propagate_prior, row_normalize
 from treasury_regime.modeling.regime_dictionary import BASE_TRANSITION_MATRIX, INITIAL_REGIME_PRIOR, regime_ids
-from treasury_regime.schemas import ChannelUpdate, ShockEvent
+from treasury_regime.schemas import ChannelUpdate
 
 
 @dataclass
@@ -19,6 +19,19 @@ class RegimeBundle:
 
 
 class RegimeAgent:
+    PRIOR_BASELINE_WEIGHT = 0.28
+    POSTERIOR_UPDATE_WEIGHT = 0.58
+    POSTERIOR_TEMPERATURE = {
+        "short": 2.2,
+        "mid": 2.6,
+        "long": 2.9,
+    }
+    POSTERIOR_FLOOR = {
+        "short": 0.012,
+        "mid": 0.018,
+        "long": 0.022,
+    }
+
     def _treasury_market_scores(self, row: pd.Series) -> dict[str, float]:
         return {
             "policy_trapped_stagflation_risk": 0.60 * row["policy_constraint_score"] + 0.40 * row["inflation_pressure_score"] + 0.20 * row["policy_uncertainty_score"] - 0.20 * row["growth_slowdown_score"],
@@ -63,26 +76,33 @@ class RegimeAgent:
             "reanchoring_normalization": -0.25 * growth_signal,
         }
 
-    def _shock_scores(self, row: pd.Series, shock_event: ShockEvent) -> dict[str, float]:
-        dominant = shock_event.dominant_category
+    def _shock_scores(self, row: pd.Series, shock_row: pd.Series | None) -> dict[str, float]:
+        dominant = "narrative_policy_signaling"
+        severity = 0.25
+        if shock_row is not None:
+            dominant = str(shock_row.get("dominant_category", dominant))
+            raw_severity = shock_row.get("severity_score", severity)
+            if not pd.isna(raw_severity):
+                severity = float(raw_severity)
+        shock_scale = 0.50 + 0.55 * max(0.0, min(1.0, severity))
         scores = {regime_id: 0.0 for regime_id in regime_ids()}
         if dominant == "kinetic_geopolitical":
-            scores["war_augmented_inflation_pressure"] += 0.70
-            scores["policy_trapped_stagflation_risk"] += 0.20
+            scores["war_augmented_inflation_pressure"] += 0.70 * shock_scale
+            scores["policy_trapped_stagflation_risk"] += 0.20 * shock_scale
         elif dominant == "energy_shipping_supply":
-            scores["war_augmented_inflation_pressure"] += 0.65
-            scores["policy_trapped_stagflation_risk"] += 0.15
+            scores["war_augmented_inflation_pressure"] += 0.65 * shock_scale
+            scores["policy_trapped_stagflation_risk"] += 0.15 * shock_scale
         elif dominant == "fiscal_issuance_defense":
-            scores["fiscal_term_premium_repricing"] += 0.70
-            scores["war_augmented_inflation_pressure"] += 0.10
+            scores["fiscal_term_premium_repricing"] += 0.70 * shock_scale
+            scores["war_augmented_inflation_pressure"] += 0.10 * shock_scale
         elif dominant == "monetary_credibility":
-            scores["policy_trapped_stagflation_risk"] += 0.55
-            scores["growth_slowdown_constrained_easing"] += 0.10
+            scores["policy_trapped_stagflation_risk"] += 0.55 * shock_scale
+            scores["growth_slowdown_constrained_easing"] += 0.10 * shock_scale
         elif dominant == "funding_liquidity":
-            scores["funding_liquidity_stress"] += 0.75
-            scores["growth_slowdown_constrained_easing"] += 0.10
+            scores["funding_liquidity_stress"] += 0.75 * shock_scale
+            scores["growth_slowdown_constrained_easing"] += 0.10 * shock_scale
         else:
-            scores["policy_trapped_stagflation_risk"] += 0.20
+            scores["policy_trapped_stagflation_risk"] += 0.20 * shock_scale
         scores["reanchoring_normalization"] -= 0.10 * row["transition_pressure"]
         return scores
 
@@ -90,12 +110,12 @@ class RegimeAgent:
         self,
         row: pd.Series,
         horizon: str,
-        shock_event: ShockEvent,
+        shock_row: pd.Series | None,
     ) -> tuple[list[dict[str, float]], list[ChannelUpdate]]:
         cfg = HORIZONS[horizon]
         channel_map = {
             "treasury_market": (self._treasury_market_scores(row), cfg.treasury_weight),
-            "shock_player": (self._shock_scores(row, shock_event), cfg.shock_weight),
+            "shock_player": (self._shock_scores(row, shock_row), cfg.shock_weight),
             "policy_framework": (self._policy_scores(row), cfg.policy_weight),
             "inflation_regime": (self._inflation_scores(row), cfg.inflation_weight),
             "activity_anchor": (self._activity_scores(row), cfg.activity_weight),
@@ -127,24 +147,47 @@ class RegimeAgent:
             updates[from_regime] = adjusted
         return row_normalize(updates)
 
-    def run(self, features: pd.DataFrame, shock_event: ShockEvent) -> RegimeBundle:
+    def _daily_prior(self, prior: dict[str, float]) -> dict[str, float]:
+        propagated = propagate_prior(prior, BASE_TRANSITION_MATRIX)
+        return row_normalize(
+            {
+                "blend": {
+                    regime_id: (1.0 - self.PRIOR_BASELINE_WEIGHT) * float(propagated.get(regime_id, 0.0))
+                    + self.PRIOR_BASELINE_WEIGHT * float(INITIAL_REGIME_PRIOR.get(regime_id, 0.0))
+                    for regime_id in INITIAL_REGIME_PRIOR
+                }
+            }
+        )["blend"]
+
+    def run(self, features: pd.DataFrame, shock_history: pd.DataFrame) -> RegimeBundle:
         features = features.sort_index()
+        shock_history = shock_history.sort_index() if not shock_history.empty else pd.DataFrame()
         priors = {horizon: INITIAL_REGIME_PRIOR.copy() for horizon in HORIZONS}
         history_rows: list[dict[str, object]] = []
         latest_updates: list[ChannelUpdate] = []
+        latest_index = features.index[-1]
 
         for date, row in features.iterrows():
             row = row.fillna(0.0)
+            shock_row = shock_history.loc[date] if date in shock_history.index else None
             row_result: dict[str, object] = {"date": date}
             for horizon in HORIZONS:
-                weighted_scores, updates = self._weighted_channel_contributions(row, horizon, shock_event)
-                posterior = combine_prior_and_channels(priors[horizon], weighted_scores)
+                prior_for_day = self._daily_prior(priors[horizon])
+                weighted_scores, updates = self._weighted_channel_contributions(row, horizon, shock_row)
+                posterior = combine_prior_and_channels(
+                    prior_for_day,
+                    weighted_scores,
+                    temperature=self.POSTERIOR_TEMPERATURE[horizon],
+                    floor=self.POSTERIOR_FLOOR[horizon],
+                    anchor_prior=prior_for_day,
+                    update_weight=self.POSTERIOR_UPDATE_WEIGHT,
+                )
                 priors[horizon] = posterior
                 for regime_id, probability in posterior.items():
                     row_result[f"{horizon}_{regime_id}"] = probability
                 row_result[f"{horizon}_dominant_regime"] = max(posterior, key=posterior.get)
                 row_result[f"{horizon}_dominant_probability"] = posterior[row_result[f"{horizon}_dominant_regime"]]
-                if date == features.index[-1]:
+                if date == latest_index:
                     latest_updates.extend(updates)
             history_rows.append(row_result)
 
@@ -156,6 +199,7 @@ class RegimeAgent:
                 horizon: {
                     "regime_id": str(latest[f"{horizon}_dominant_regime"]),
                     "probability": float(latest[f"{horizon}_dominant_probability"]),
+                    "remaining_probability_mass": float(1.0 - latest[f"{horizon}_dominant_probability"]),
                 }
                 for horizon in HORIZONS
             },

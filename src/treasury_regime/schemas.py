@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from dataclasses import asdict, dataclass, field, is_dataclass
 from datetime import datetime
 from typing import Any
@@ -16,6 +17,8 @@ def to_jsonable(value: Any) -> Any:
         return [to_jsonable(item) for item in value]
     if isinstance(value, datetime):
         return value.isoformat()
+    if isinstance(value, float):
+        return value if math.isfinite(value) else None
     return value
 
 
