@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jaeseok Hwang | Treasury Regime Lab</title>
+    <meta
+      name="description"
+      content="Daily Treasury market snapshot, Bayesian regime map, and player-driven strategy tracking."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body data-page="home">
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="/">Treasury Regime Lab</a>
+        <nav class="site-nav">
+          <a href="/">Home</a>
+          <a href="/framework/">Framework</a>
+          <a href="/primer/">Primer</a>
+          <a href="/roadmap/">Roadmap</a>
+          <a href="/archive/">Archive</a>
+          <a href="/research/">Research</a>
+          <a href="/resume/docs/" target="_blank" rel="noreferrer">Resume</a>
+        </nav>
+      </header>
+
+      <main class="main-layout">
+        <section class="market-command">
+          <article class="panel command-hero">
+            <div class="panel-header">
+              <span class="section-tag">Market snapshot</span>
+              <h1>Treasury regime snapshot before the open.</h1>
+            </div>
+            <div id="hero-summary"></div>
+          </article>
+          <article class="panel command-board">
+            <div class="panel-header">
+              <span class="section-tag">Signal board</span>
+              <h2>What changed in rates, funding, and inflation</h2>
+            </div>
+            <div id="hero-signals"></div>
+          </article>
+        </section>
+
+        <section class="snapshot-grid">
+          <article class="panel curve-stage">
+            <div class="panel-header">
+              <span class="section-tag">Treasury curve</span>
+              <h2>Yesterday’s curve shape and sector pricing</h2>
+            </div>
+            <div id="curve-term-chart"></div>
+          </article>
+          <article class="panel snapshot-panel">
+            <div class="panel-header">
+              <span class="section-tag">Key levels</span>
+              <h2>Rates board, curve, breakevens, real yields, and funding</h2>
+            </div>
+            <div id="snapshot-metrics"></div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <span class="section-tag">Bayesian regime map</span>
+            <h2>Current path, transition pressure, and nearest alternatives</h2>
+          </div>
+          <div id="regime-map"></div>
+        </section>
+
+        <section class="section-grid section-grid-wide">
+          <article class="panel">
+            <div class="panel-header">
+              <span class="section-tag">Evidence decomposition</span>
+              <h2>What is pushing the regime posterior right now?</h2>
+            </div>
+            <div id="evidence-bars"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <span class="section-tag">Decision note</span>
+              <h2>Desk takeaway and falsifiers</h2>
+            </div>
+            <div id="executive-report" class="report-note"></div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <span class="section-tag">Player response by horizon</span>
+            <h2>How each player is likely to respond across short, mid, and long horizons</h2>
+          </div>
+          <div id="player-horizon-grid"></div>
+        </section>
+
+        <section class="section-grid section-grid-wide">
+          <article class="panel">
+            <div class="panel-header">
+              <span class="section-tag">Model review</span>
+              <h2>What the model has been getting right and wrong</h2>
+            </div>
+            <div id="review-overview"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <span class="section-tag">Source review</span>
+              <h2>Tracked evidence credibility</h2>
+            </div>
+            <div id="source-table"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>

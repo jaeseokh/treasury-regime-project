@@ -1,0 +1,1123 @@
+{
+  "summary": {
+    "date": "2026-04-27",
+    "war_anchor_date": "2025-06-21",
+    "model_framework": "kalman_state_space_covariance",
+    "current_regime": {
+      "short": {
+        "regime_id": "policy_trapped_stagflation_risk",
+        "probability": 0.2326950796511521,
+        "remaining_probability_mass": 0.7673049203488479
+      },
+      "mid": {
+        "regime_id": "policy_trapped_stagflation_risk",
+        "probability": 0.22965216089142798,
+        "remaining_probability_mass": 0.7703478391085721
+      },
+      "long": {
+        "regime_id": "policy_trapped_stagflation_risk",
+        "probability": 0.22394402444121944,
+        "remaining_probability_mass": 0.7760559755587806
+      }
+    },
+    "economy_state": {
+      "short": {
+        "inflation": 0.5867817189590873,
+        "growth_drag": 0.293103851467643,
+        "liquidity_stress": 0.014999260479281934,
+        "term_premium": -0.03237727696854417,
+        "market_stress": 0.3297306607276195
+      },
+      "mid": {
+        "inflation": 0.7031893068590975,
+        "growth_drag": 0.3037893251598499,
+        "liquidity_stress": 0.0026531072668119285,
+        "term_premium": -0.07308213944290244,
+        "market_stress": 0.33379052615590193
+      },
+      "long": {
+        "inflation": 0.7458384208799034,
+        "growth_drag": 0.2934165509928852,
+        "liquidity_stress": -0.0009299785067650827,
+        "term_premium": -0.12684528823841087,
+        "market_stress": 0.33129962683101777
+      }
+    },
+    "economy_status": {
+      "short": {
+        "dominant_axis": "inflation",
+        "dominant_value": 0.5867817189590873,
+        "status": "balanced",
+        "dispersion": 0.22624404339159251
+      },
+      "mid": {
+        "dominant_axis": "inflation",
+        "dominant_value": 0.7031893068590975,
+        "status": "elevated",
+        "dispersion": 0.27596177331387817
+      },
+      "long": {
+        "dominant_axis": "inflation",
+        "dominant_value": 0.7458384208799034,
+        "status": "elevated",
+        "dispersion": 0.30309013960046954
+      }
+    },
+    "covariance_monitor": {
+      "short": {
+        "signal_columns": [
+          "z_2y_move",
+          "z_10y_move",
+          "z_curve_2s10s",
+          "z_curve_5s30s",
+          "z_breakeven",
+          "z_real_10y",
+          "z_repo_minus_sofr",
+          "z_sofr_minus_ff",
+          "z_hy_spread",
+          "z_dollar",
+          "z_wti",
+          "z_vix",
+          "z_ns_slope",
+          "z_ns_curvature",
+          "z_term_premium_10y"
+        ],
+        "trace_60d": 18.470163245668292,
+        "eig1_share_60d": 0.4178953037112032,
+        "abs_mean_60d": 0.3857199673316338,
+        "shift_fro_60d": 0.6078933037943045,
+        "inflation_rates_cov_60d": 0.0826953216269832,
+        "growth_risk_cov_60d": 0.1357912124920188,
+        "funding_risk_cov_60d": 0.056981169923174,
+        "top_covariance_pairs": [
+          {
+            "left": "z_hy_spread",
+            "right": "z_vix",
+            "covariance": 2.0068843836478636
+          },
+          {
+            "left": "z_wti",
+            "right": "z_vix",
+            "covariance": 1.627174341114621
+          },
+          {
+            "left": "z_hy_spread",
+            "right": "z_wti",
+            "covariance": 1.466715696852071
+          },
+          {
+            "left": "z_hy_spread",
+            "right": "z_dollar",
+            "covariance": 1.3247586052883054
+          },
+          {
+            "left": "z_dollar",
+            "right": "z_vix",
+            "covariance": 1.2765394441106281
+          }
+        ]
+      },
+      "mid": {
+        "signal_columns": [
+          "z_2y_move",
+          "z_10y_move",
+          "z_curve_2s10s",
+          "z_curve_5s30s",
+          "z_breakeven",
+          "z_real_10y",
+          "z_repo_minus_sofr",
+          "z_sofr_minus_ff",
+          "z_hy_spread",
+          "z_dollar",
+          "z_wti",
+          "z_vix",
+          "z_ns_slope",
+          "z_ns_curvature",
+          "z_term_premium_10y"
+        ],
+        "trace_60d": 18.470163245668292,
+        "eig1_share_60d": 0.4178953037112032,
+        "abs_mean_60d": 0.3857199673316338,
+        "shift_fro_60d": 0.6078933037943045,
+        "inflation_rates_cov_60d": 0.0826953216269832,
+        "growth_risk_cov_60d": 0.1357912124920188,
+        "funding_risk_cov_60d": 0.056981169923174,
+        "top_covariance_pairs": [
+          {
+            "left": "z_hy_spread",
+            "right": "z_vix",
+            "covariance": 2.0068843836478636
+          },
+          {
+            "left": "z_wti",
+            "right": "z_vix",
+            "covariance": 1.627174341114621
+          },
+          {
+            "left": "z_hy_spread",
+            "right": "z_wti",
+            "covariance": 1.466715696852071
+          },
+          {
+            "left": "z_hy_spread",
+            "right": "z_dollar",
+            "covariance": 1.3247586052883054
+          },
+          {
+            "left": "z_dollar",
+            "right": "z_vix",
+            "covariance": 1.2765394441106281
+          }
+        ]
+      },
+      "long": {
+        "signal_columns": [
+          "z_2y_move",
+          "z_10y_move",
+          "z_curve_2s10s",
+          "z_curve_5s30s",
+          "z_breakeven",
+          "z_real_10y",
+          "z_repo_minus_sofr",
+          "z_sofr_minus_ff",
+          "z_hy_spread",
+          "z_dollar",
+          "z_wti",
+          "z_vix",
+          "z_ns_slope",
+          "z_ns_curvature",
+          "z_term_premium_10y"
+        ],
+        "trace_60d": 18.470163245668292,
+        "eig1_share_60d": 0.4178953037112032,
+        "abs_mean_60d": 0.3857199673316338,
+        "shift_fro_60d": 0.6078933037943045,
+        "inflation_rates_cov_60d": 0.0826953216269832,
+        "growth_risk_cov_60d": 0.1357912124920188,
+        "funding_risk_cov_60d": 0.056981169923174,
+        "top_covariance_pairs": [
+          {
+            "left": "z_hy_spread",
+            "right": "z_vix",
+            "covariance": 2.0068843836478636
+          },
+          {
+            "left": "z_wti",
+            "right": "z_vix",
+            "covariance": 1.627174341114621
+          },
+          {
+            "left": "z_hy_spread",
+            "right": "z_wti",
+            "covariance": 1.466715696852071
+          },
+          {
+            "left": "z_hy_spread",
+            "right": "z_dollar",
+            "covariance": 1.3247586052883054
+          },
+          {
+            "left": "z_dollar",
+            "right": "z_vix",
+            "covariance": 1.2765394441106281
+          }
+        ]
+      }
+    },
+    "shock_event": {
+      "shock_id": "shock-fc2470929039",
+      "date": "2026-04-27",
+      "dominant_category": "narrative_policy_signaling",
+      "secondary_categories": [
+        "monetary_credibility",
+        "energy_shipping_supply"
+      ],
+      "source_actor": "treasury",
+      "origin_source": "official_and_market_evidence",
+      "transmission_channel": "narrative_and_policy_signaling",
+      "affected_horizons": [
+        "short",
+        "mid",
+        "long"
+      ],
+      "persistence_score": 0.35,
+      "severity_score": 0.6309119153483056,
+      "confidence_score": 0.8446367873022458,
+      "linked_evidence_ids": [
+        "1a8b9ffdbf404b32",
+        "083e3cc4787c5d74",
+        "c41a22cc1897e8d2",
+        "e5bbfcd05c981544",
+        "6f9ee08c2aed1e12",
+        "a9c73a8530d9af97"
+      ]
+    },
+    "strategy": {
+      "directional_view": "two-way",
+      "curve_view": "range_bound",
+      "main_risk": "fiscal_premium",
+      "policy_paralysis_signal": "medium",
+      "term_premium_view": "stable",
+      "falsifier": "A clean reversal in breakevens, repo stress, and long-end underperformance would challenge the current path."
+    },
+    "curve_snapshot": {
+      "yield_3m": 3.69,
+      "yield_6m": 3.72,
+      "yield_1y": 3.7,
+      "yield_2y": 3.83,
+      "yield_3y": 3.84,
+      "yield_5y": 3.96,
+      "yield_7y": 4.13,
+      "yield_10y": 4.34,
+      "yield_20y": 4.9,
+      "yield_30y": 4.92,
+      "curve_2s10s": 0.5099999999999998,
+      "curve_5s30s": 0.96,
+      "fly_2s5s10s": -25.0,
+      "fly_5s10s30s": -20.00000000000001,
+      "breakeven_5y": 2.61,
+      "breakeven_10y": 2.42,
+      "real_5y": 1.38,
+      "real_10y": 1.92,
+      "sofr": 3.65,
+      "fed_funds_effective": 3.64,
+      "overnight_bank_funding_rate": 3.64,
+      "sofr_minus_ff": 0.0099999999999997,
+      "repo_minus_sofr": -0.0099999999999997,
+      "expected_short_rate_proxy_2y": 3.802239395243373,
+      "term_premium_proxy_10y": 1.1412650390135313,
+      "term_premium_proxy_30y": 2.2788940912632305,
+      "expected_short_rate_proxy_10y": 3.1987349609864686,
+      "ns_level": 5.142193948127692,
+      "ns_slope": -1.3396463498839075,
+      "ns_curvature": -2.2303310104219647
+    },
+    "daily_changes": {
+      "yield_3m_bp": 0.0,
+      "yield_2y_bp": 0.0,
+      "yield_5y_bp": 0.0,
+      "yield_10y_bp": 0.0,
+      "yield_30y_bp": 0.0,
+      "curve_2s10s_bp": 0.0,
+      "curve_5s30s_bp": 0.0,
+      "breakeven_5y_bp": 0.0,
+      "breakeven_10y_bp": 0.0,
+      "real_10y_bp": 0.0,
+      "sofr_bp": 0.0,
+      "sofr_minus_ff_bp": 0.0,
+      "repo_minus_sofr_bp": 0.0,
+      "term_premium_proxy_10y_bp": 0.0,
+      "wti_pct": 0.0
+    },
+    "curve_decomposition": {
+      "interpretation": "Inflation compensation softened while real yields rose, which suggests cleaner disinflation or a term-premium rather than stagflation impulse.",
+      "policy_uncertainty_score": 0.4170814048115576,
+      "stagflation_signal": 0.0,
+      "term_premium_model_window_months": 120.0
+    },
+    "risk_measures": {
+      "par_price_2y": 100.0,
+      "par_price_10y": 99.99999999999991,
+      "mod_duration_2y": 1.907798010067552,
+      "mod_duration_10y": 8.043163326826893,
+      "convexity_2y": 4.635493780824617,
+      "convexity_10y": 77.05739744778846,
+      "price_change_10bp_2y_pct": -0.1905482501980082,
+      "price_change_10bp_10y_pct": -0.8004766370021454,
+      "dv01_2y": 0.0190779801006755,
+      "dv01_10y": 0.0804316332682688,
+      "dv01_proxy_2y": 0.0190779801006755,
+      "dv01_proxy_10y": 0.0804316332682688
+    },
+    "channel_updates": [
+      {
+        "channel_name": "kalman_filtered_state",
+        "horizon": "short",
+        "regime_likelihoods": {
+          "policy_trapped_stagflation_risk": 0.7503461061830079,
+          "war_augmented_inflation_pressure": 0.6763127438816308,
+          "growth_slowdown_constrained_easing": 0.21859213366610591,
+          "fiscal_term_premium_repricing": 0.1341072515173456,
+          "funding_liquidity_stress": 0.29734730884591054,
+          "reanchoring_normalization": -0.8118000956045273
+        },
+        "transition_likelihoods": {},
+        "confidence": 0.72,
+        "notes": "Latent economy-status state estimated from multi-signal Kalman filtering."
+      },
+      {
+        "channel_name": "signal_covariance_structure",
+        "horizon": "short",
+        "regime_likelihoods": {
+          "policy_trapped_stagflation_risk": 0.08559792686752542,
+          "war_augmented_inflation_pressure": 0.016539064325396643,
+          "growth_slowdown_constrained_easing": 0.10739244170120452,
+          "fiscal_term_premium_repricing": 0.1716555569290461,
+          "funding_liquidity_stress": 0.2896514789972618,
+          "reanchoring_normalization": -0.2152617185505843
+        },
+        "transition_likelihoods": {},
+        "confidence": 0.76,
+        "notes": "Rolling covariance structure adjustment derived from cross-signal co-movement."
+      },
+      {
+        "channel_name": "shock_impulse_transition",
+        "horizon": "short",
+        "regime_likelihoods": {
+          "policy_trapped_stagflation_risk": 0.12618238306966112,
+          "war_augmented_inflation_pressure": 0.0,
+          "growth_slowdown_constrained_easing": 0.0,
+          "fiscal_term_premium_repricing": 0.0,
+          "funding_liquidity_stress": 0.0,
+          "reanchoring_normalization": 0.0
+        },
+        "transition_likelihoods": {},
+        "confidence": 0.68,
+        "notes": "Shock impulse applied through the state transition equation."
+      },
+      {
+        "channel_name": "kalman_filtered_state",
+        "horizon": "mid",
+        "regime_likelihoods": {
+          "policy_trapped_stagflation_risk": 0.8420381170856099,
+          "war_augmented_inflation_pressure": 0.785842572081023,
+          "growth_slowdown_constrained_easing": 0.2025889390739086,
+          "fiscal_term_premium_repricing": 0.11638955152918098,
+          "funding_liquidity_stress": 0.2936905863133302,
+          "reanchoring_normalization": -0.883019635200334
+        },
+        "transition_likelihoods": {},
+        "confidence": 0.72,
+        "notes": "Latent economy-status state estimated from multi-signal Kalman filtering."
+      },
+      {
+        "channel_name": "signal_covariance_structure",
+        "horizon": "mid",
+        "regime_likelihoods": {
+          "policy_trapped_stagflation_risk": 0.08559792686752542,
+          "war_augmented_inflation_pressure": 0.016539064325396643,
+          "growth_slowdown_constrained_easing": 0.10739244170120452,
+          "fiscal_term_premium_repricing": 0.1716555569290461,
+          "funding_liquidity_stress": 0.2896514789972618,
+          "reanchoring_normalization": -0.2152617185505843
+        },
+        "transition_likelihoods": {},
+        "confidence": 0.76,
+        "notes": "Rolling covariance structure adjustment derived from cross-signal co-movement."
+      },
+      {
+        "channel_name": "shock_impulse_transition",
+        "horizon": "mid",
+        "regime_likelihoods": {
+          "policy_trapped_stagflation_risk": 0.12618238306966112,
+          "war_augmented_inflation_pressure": 0.0,
+          "growth_slowdown_constrained_easing": 0.0,
+          "fiscal_term_premium_repricing": 0.0,
+          "funding_liquidity_stress": 0.0,
+          "reanchoring_normalization": 0.0
+        },
+        "transition_likelihoods": {},
+        "confidence": 0.68,
+        "notes": "Shock impulse applied through the state transition equation."
+      },
+      {
+        "channel_name": "kalman_filtered_state",
+        "horizon": "long",
+        "regime_likelihoods": {
+          "policy_trapped_stagflation_risk": 0.854597912878527,
+          "war_augmented_inflation_pressure": 0.816024444772375,
+          "growth_slowdown_constrained_easing": 0.185715404261601,
+          "fiscal_term_premium_repricing": 0.07003018831963931,
+          "funding_liquidity_stress": 0.28558861063059066,
+          "reanchoring_normalization": -0.874528493351133
+        },
+        "transition_likelihoods": {},
+        "confidence": 0.72,
+        "notes": "Latent economy-status state estimated from multi-signal Kalman filtering."
+      },
+      {
+        "channel_name": "signal_covariance_structure",
+        "horizon": "long",
+        "regime_likelihoods": {
+          "policy_trapped_stagflation_risk": 0.08559792686752542,
+          "war_augmented_inflation_pressure": 0.016539064325396643,
+          "growth_slowdown_constrained_easing": 0.10739244170120452,
+          "fiscal_term_premium_repricing": 0.1716555569290461,
+          "funding_liquidity_stress": 0.2896514789972618,
+          "reanchoring_normalization": -0.2152617185505843
+        },
+        "transition_likelihoods": {},
+        "confidence": 0.76,
+        "notes": "Rolling covariance structure adjustment derived from cross-signal co-movement."
+      },
+      {
+        "channel_name": "shock_impulse_transition",
+        "horizon": "long",
+        "regime_likelihoods": {
+          "policy_trapped_stagflation_risk": 0.12618238306966112,
+          "war_augmented_inflation_pressure": 0.0,
+          "growth_slowdown_constrained_easing": 0.0,
+          "fiscal_term_premium_repricing": 0.0,
+          "funding_liquidity_stress": 0.0,
+          "reanchoring_normalization": 0.0
+        },
+        "transition_likelihoods": {},
+        "confidence": 0.68,
+        "notes": "Shock impulse applied through the state transition equation."
+      }
+    ],
+    "player_responses": [
+      {
+        "player_id": "treasury",
+        "date": "2026-04-27",
+        "main_objective": "Preserve market access and financing credibility",
+        "main_constraint": "Heavy issuance and term-premium sensitivity",
+        "horizon_scenarios": {
+          "short": [
+            {
+              "action": "communication_support",
+              "probability": 0.35976444643429795,
+              "rationale": "treasury communication support probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "maintain_issuance_mix",
+              "probability": 0.3351724298459206,
+              "rationale": "treasury maintain issuance mix probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "bill_heavy_flexibility",
+              "probability": 0.3050631237197815,
+              "rationale": "treasury bill heavy flexibility probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "mid": [
+            {
+              "action": "stabilize_coupon_path",
+              "probability": 0.365028779909736,
+              "rationale": "treasury stabilize coupon path probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "refund_bills_over_coupons",
+              "probability": 0.3207880375972474,
+              "rationale": "treasury refund bills over coupons probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "defense_financing_bias",
+              "probability": 0.3141831824930167,
+              "rationale": "treasury defense financing bias probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "long": [
+            {
+              "action": "preserve_market_confidence",
+              "probability": 0.3995517070074537,
+              "rationale": "treasury preserve market confidence probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "normalize_issuance_mix",
+              "probability": 0.31852458976968817,
+              "rationale": "treasury normalize issuance mix probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "structural_bill_bias",
+              "probability": 0.28192370322285815,
+              "rationale": "treasury structural bill bias probability under policy_trapped_stagflation_risk"
+            }
+          ]
+        },
+        "linked_market_proxies": [
+          "curve_2s10s",
+          "breakeven_10y",
+          "repo_minus_sofr",
+          "high_yield_spread"
+        ]
+      },
+      {
+        "player_id": "federal_reserve",
+        "date": "2026-04-27",
+        "main_objective": "Protect inflation credibility while managing downside risk",
+        "main_constraint": "Dual-mandate conflict under uncertainty",
+        "horizon_scenarios": {
+          "short": [
+            {
+              "action": "hawkish_hold",
+              "probability": 0.38939355048234586,
+              "rationale": "federal_reserve hawkish hold probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "look_through_supply_shock",
+              "probability": 0.3632934573899332,
+              "rationale": "federal_reserve look through supply shock probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "stability_monitoring",
+              "probability": 0.247312992127721,
+              "rationale": "federal_reserve stability monitoring probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "mid": [
+            {
+              "action": "delay_easing",
+              "probability": 0.46471013394434235,
+              "rationale": "federal_reserve delay easing probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "liquidity_backstop_if_needed",
+              "probability": 0.268116917992417,
+              "rationale": "federal_reserve liquidity backstop if needed probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "measured_easing",
+              "probability": 0.26717294806324066,
+              "rationale": "federal_reserve measured easing probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "long": [
+            {
+              "action": "restore_credibility",
+              "probability": 0.4157520832193328,
+              "rationale": "federal_reserve restore credibility probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "soft_landing_normalization",
+              "probability": 0.3224094862480268,
+              "rationale": "federal_reserve soft landing normalization probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "financial_stability_tools",
+              "probability": 0.26183843053264033,
+              "rationale": "federal_reserve financial stability tools probability under policy_trapped_stagflation_risk"
+            }
+          ]
+        },
+        "linked_market_proxies": [
+          "curve_2s10s",
+          "breakeven_10y",
+          "repo_minus_sofr",
+          "high_yield_spread"
+        ]
+      },
+      {
+        "player_id": "sell_side",
+        "date": "2026-04-27",
+        "main_objective": "Intermediate flow and manage balance sheet",
+        "main_constraint": "Inventory, funding, and client flow stress",
+        "horizon_scenarios": {
+          "short": [
+            {
+              "action": "front_end_repricing",
+              "probability": 0.3665375550280964,
+              "rationale": "sell_side front end repricing probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "flow_amplification",
+              "probability": 0.3653843496564706,
+              "rationale": "sell_side flow amplification probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "balance_sheet_conservatism",
+              "probability": 0.26807809531543303,
+              "rationale": "sell_side balance sheet conservatism probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "mid": [
+            {
+              "action": "curve_reshaping",
+              "probability": 0.39562213162929527,
+              "rationale": "sell_side curve reshaping probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "client_rehedging",
+              "probability": 0.3536060308803757,
+              "rationale": "sell_side client rehedging probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "inventory_reduction",
+              "probability": 0.250771837490329,
+              "rationale": "sell_side inventory reduction probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "long": [
+            {
+              "action": "new_macro_consensus",
+              "probability": 0.3684442381489781,
+              "rationale": "sell_side new macro consensus probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "normalized_intermediation",
+              "probability": 0.3242002826681084,
+              "rationale": "sell_side normalized intermediation probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "structural_long_end_discount",
+              "probability": 0.3073554791829135,
+              "rationale": "sell_side structural long end discount probability under policy_trapped_stagflation_risk"
+            }
+          ]
+        },
+        "linked_market_proxies": [
+          "curve_2s10s",
+          "breakeven_10y",
+          "repo_minus_sofr",
+          "high_yield_spread"
+        ]
+      },
+      {
+        "player_id": "buy_side",
+        "date": "2026-04-27",
+        "main_objective": "Allocate duration and inflation risk efficiently",
+        "main_constraint": "Regime uncertainty and drawdown control",
+        "horizon_scenarios": {
+          "short": [
+            {
+              "action": "inflation_hedge_bias",
+              "probability": 0.38653176040023324,
+              "rationale": "buy_side inflation hedge bias probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "wait_for_confirmation",
+              "probability": 0.37273332469863846,
+              "rationale": "buy_side wait for confirmation probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "quality_duration_bid",
+              "probability": 0.24073491490112825,
+              "rationale": "buy_side quality duration bid probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "mid": [
+            {
+              "action": "barbell_real_and_nominal",
+              "probability": 0.40424265567348155,
+              "rationale": "buy_side barbell real and nominal probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "underweight_duration",
+              "probability": 0.3364405602209593,
+              "rationale": "buy_side underweight duration probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "extend_duration_on_slowdown",
+              "probability": 0.2593167841055592,
+              "rationale": "buy_side extend duration on slowdown probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "long": [
+            {
+              "action": "structural_inflation_hedge",
+              "probability": 0.40643586948243987,
+              "rationale": "buy_side structural inflation hedge probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "soft_landing_reengagement",
+              "probability": 0.324265250172953,
+              "rationale": "buy_side soft landing reengagement probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "selective_long_duration",
+              "probability": 0.26929888034460725,
+              "rationale": "buy_side selective long duration probability under policy_trapped_stagflation_risk"
+            }
+          ]
+        },
+        "linked_market_proxies": [
+          "curve_2s10s",
+          "breakeven_10y",
+          "repo_minus_sofr",
+          "high_yield_spread"
+        ]
+      },
+      {
+        "player_id": "foreign_official",
+        "date": "2026-04-27",
+        "main_objective": "Preserve reserves and liquidity",
+        "main_constraint": "Dollar exposure and safe-haven confidence",
+        "horizon_scenarios": {
+          "short": [
+            {
+              "action": "maintain_reserves",
+              "probability": 0.3891934121998334,
+              "rationale": "foreign_official maintain reserves probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "shorten_duration",
+              "probability": 0.3440269278103085,
+              "rationale": "foreign_official shorten duration probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "safe_haven_reentry",
+              "probability": 0.26677965998985814,
+              "rationale": "foreign_official safe haven reentry probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "mid": [
+            {
+              "action": "maintain_core_treasury_holdings",
+              "probability": 0.3715561005368841,
+              "rationale": "foreign_official maintain core treasury holdings probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "gradual_diversification",
+              "probability": 0.3205962346808244,
+              "rationale": "foreign_official gradual diversification probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "prefer_front_end_liquidity",
+              "probability": 0.3078476647822916,
+              "rationale": "foreign_official prefer front end liquidity probability under policy_trapped_stagflation_risk"
+            }
+          ],
+          "long": [
+            {
+              "action": "conditional_safe_haven_demand",
+              "probability": 0.3510500353992727,
+              "rationale": "foreign_official conditional safe haven demand probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "return_if_reanchoring",
+              "probability": 0.32731688348404625,
+              "rationale": "foreign_official return if reanchoring probability under policy_trapped_stagflation_risk"
+            },
+            {
+              "action": "reserve_rebalancing",
+              "probability": 0.32163308111668104,
+              "rationale": "foreign_official reserve rebalancing probability under policy_trapped_stagflation_risk"
+            }
+          ]
+        },
+        "linked_market_proxies": [
+          "curve_2s10s",
+          "breakeven_10y",
+          "repo_minus_sofr",
+          "high_yield_spread"
+        ]
+      }
+    ],
+    "source_scorecard": []
+  },
+  "player_probabilities": [
+    {
+      "date": "2026-04-27",
+      "player_id": "treasury",
+      "horizon": "short",
+      "action": "communication_support",
+      "probability": 0.3597644464342979
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "treasury",
+      "horizon": "short",
+      "action": "maintain_issuance_mix",
+      "probability": 0.3351724298459206
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "treasury",
+      "horizon": "short",
+      "action": "bill_heavy_flexibility",
+      "probability": 0.3050631237197815
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "treasury",
+      "horizon": "mid",
+      "action": "stabilize_coupon_path",
+      "probability": 0.365028779909736
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "treasury",
+      "horizon": "mid",
+      "action": "refund_bills_over_coupons",
+      "probability": 0.3207880375972474
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "treasury",
+      "horizon": "mid",
+      "action": "defense_financing_bias",
+      "probability": 0.3141831824930167
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "treasury",
+      "horizon": "long",
+      "action": "preserve_market_confidence",
+      "probability": 0.3995517070074537
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "treasury",
+      "horizon": "long",
+      "action": "normalize_issuance_mix",
+      "probability": 0.3185245897696881
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "treasury",
+      "horizon": "long",
+      "action": "structural_bill_bias",
+      "probability": 0.2819237032228581
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "federal_reserve",
+      "horizon": "short",
+      "action": "hawkish_hold",
+      "probability": 0.3893935504823458
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "federal_reserve",
+      "horizon": "short",
+      "action": "look_through_supply_shock",
+      "probability": 0.3632934573899332
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "federal_reserve",
+      "horizon": "short",
+      "action": "stability_monitoring",
+      "probability": 0.247312992127721
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "federal_reserve",
+      "horizon": "mid",
+      "action": "delay_easing",
+      "probability": 0.4647101339443423
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "federal_reserve",
+      "horizon": "mid",
+      "action": "liquidity_backstop_if_needed",
+      "probability": 0.268116917992417
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "federal_reserve",
+      "horizon": "mid",
+      "action": "measured_easing",
+      "probability": 0.2671729480632406
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "federal_reserve",
+      "horizon": "long",
+      "action": "restore_credibility",
+      "probability": 0.4157520832193328
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "federal_reserve",
+      "horizon": "long",
+      "action": "soft_landing_normalization",
+      "probability": 0.3224094862480268
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "federal_reserve",
+      "horizon": "long",
+      "action": "financial_stability_tools",
+      "probability": 0.2618384305326403
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "sell_side",
+      "horizon": "short",
+      "action": "front_end_repricing",
+      "probability": 0.3665375550280964
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "sell_side",
+      "horizon": "short",
+      "action": "flow_amplification",
+      "probability": 0.3653843496564706
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "sell_side",
+      "horizon": "short",
+      "action": "balance_sheet_conservatism",
+      "probability": 0.268078095315433
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "sell_side",
+      "horizon": "mid",
+      "action": "curve_reshaping",
+      "probability": 0.3956221316292952
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "sell_side",
+      "horizon": "mid",
+      "action": "client_rehedging",
+      "probability": 0.3536060308803757
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "sell_side",
+      "horizon": "mid",
+      "action": "inventory_reduction",
+      "probability": 0.250771837490329
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "sell_side",
+      "horizon": "long",
+      "action": "new_macro_consensus",
+      "probability": 0.3684442381489781
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "sell_side",
+      "horizon": "long",
+      "action": "normalized_intermediation",
+      "probability": 0.3242002826681084
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "sell_side",
+      "horizon": "long",
+      "action": "structural_long_end_discount",
+      "probability": 0.3073554791829135
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "buy_side",
+      "horizon": "short",
+      "action": "inflation_hedge_bias",
+      "probability": 0.3865317604002332
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "buy_side",
+      "horizon": "short",
+      "action": "wait_for_confirmation",
+      "probability": 0.3727333246986384
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "buy_side",
+      "horizon": "short",
+      "action": "quality_duration_bid",
+      "probability": 0.2407349149011282
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "buy_side",
+      "horizon": "mid",
+      "action": "barbell_real_and_nominal",
+      "probability": 0.4042426556734815
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "buy_side",
+      "horizon": "mid",
+      "action": "underweight_duration",
+      "probability": 0.3364405602209593
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "buy_side",
+      "horizon": "mid",
+      "action": "extend_duration_on_slowdown",
+      "probability": 0.2593167841055592
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "buy_side",
+      "horizon": "long",
+      "action": "structural_inflation_hedge",
+      "probability": 0.4064358694824398
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "buy_side",
+      "horizon": "long",
+      "action": "soft_landing_reengagement",
+      "probability": 0.324265250172953
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "buy_side",
+      "horizon": "long",
+      "action": "selective_long_duration",
+      "probability": 0.2692988803446072
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "foreign_official",
+      "horizon": "short",
+      "action": "maintain_reserves",
+      "probability": 0.3891934121998334
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "foreign_official",
+      "horizon": "short",
+      "action": "shorten_duration",
+      "probability": 0.3440269278103085
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "foreign_official",
+      "horizon": "short",
+      "action": "safe_haven_reentry",
+      "probability": 0.2667796599898581
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "foreign_official",
+      "horizon": "mid",
+      "action": "maintain_core_treasury_holdings",
+      "probability": 0.3715561005368841
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "foreign_official",
+      "horizon": "mid",
+      "action": "gradual_diversification",
+      "probability": 0.3205962346808244
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "foreign_official",
+      "horizon": "mid",
+      "action": "prefer_front_end_liquidity",
+      "probability": 0.3078476647822916
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "foreign_official",
+      "horizon": "long",
+      "action": "conditional_safe_haven_demand",
+      "probability": 0.3510500353992727
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "foreign_official",
+      "horizon": "long",
+      "action": "return_if_reanchoring",
+      "probability": 0.3273168834840462
+    },
+    {
+      "date": "2026-04-27",
+      "player_id": "foreign_official",
+      "horizon": "long",
+      "action": "reserve_rebalancing",
+      "probability": 0.321633081116681
+    }
+  ],
+  "source_scorecard": [],
+  "roadmap_summary": {
+    "system_version": "v1.0",
+    "layer_count": 7,
+    "upgrade_count": 15,
+    "high_priority_count": 8,
+    "in_progress_count": 2
+  }
+}
