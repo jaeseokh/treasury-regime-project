@@ -1,8 +1,5 @@
 # Treasury Regime Lab
 
-Regime-first Treasury market research for macro strategy, fixed-income decision
-support, and hiring-manager-facing communication.
-
 This repository models the `economic regime path` as the core latent state,
 uses the Treasury market as the fastest observation mirror, classifies shocks
 from official and curated evidence, updates five-player response paths, and
