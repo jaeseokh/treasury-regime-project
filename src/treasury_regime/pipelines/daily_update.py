@@ -19,7 +19,7 @@ def run_daily_update() -> dict[str, object]:
     data_bundle = DataAgent().run()
     evidence_bundle = EvidenceAgent().run()
     shock_bundle = ShockAgent().run(data_bundle.market_features, evidence_bundle.claims)
-    regime_bundle = RegimeAgent().run(data_bundle.market_features, shock_bundle.latest)
+    regime_bundle = RegimeAgent().run(data_bundle.market_features, shock_bundle.history)
     player_bundle = PlayerAgent().run(data_bundle.market_features, regime_bundle.latest_summary)
     review_bundle = ReviewAgent().run(
         data_bundle.market_data,

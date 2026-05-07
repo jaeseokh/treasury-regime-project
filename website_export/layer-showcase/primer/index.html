@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Primer | Treasury Regime Lab</title>
+    <meta
+      name="description"
+      content="A handbook for the hidden Treasury market layer: funding, basis, auctions, repo, dealer balance sheet, and positioning."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body data-page="primer">
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="/">Treasury Regime Lab</a>
+        <nav class="site-nav">
+          <a href="/">Home</a>
+          <a href="/framework/">Framework</a>
+          <a href="/primer/">Primer</a>
+          <a href="/roadmap/">Roadmap</a>
+          <a href="/archive/">Archive</a>
+          <a href="/research/">Research</a>
+          <a href="/resume/docs/" target="_blank" rel="noreferrer">Resume</a>
+        </nav>
+      </header>
+
+      <main class="main-layout">
+        <section class="hero-panel hero-panel-narrow">
+          <div class="hero-copy">
+            <span class="eyebrow">Hidden market layer handbook</span>
+            <h1>Read the Treasury market beyond the visible curve.</h1>
+            <p class="lede">
+              This primer is designed as a repeatable desk-style field guide. Each hidden layer is
+              broken into desk meaning, terminology, real variables, public proxies, update lag, and
+              the practical gap between public evidence and live trading desks.
+            </p>
+            <div class="hero-actions">
+              <a class="button-primary" href="#primer-sections">Start reading</a>
+              <a class="button-secondary" href="/framework/">Back to framework</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="primer-shell">
+          <aside class="panel primer-sidebar">
+            <div class="panel-header">
+              <span class="section-tag">How to use this page</span>
+              <h2>Study the same structure each time</h2>
+            </div>
+            <div id="primer-map"></div>
+            <nav id="primer-toc" class="primer-toc"></nav>
+          </aside>
+
+          <div class="primer-content">
+            <div id="primer-sections"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/assets/primer-data.js"></script>
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>

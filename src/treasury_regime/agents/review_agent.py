@@ -32,6 +32,44 @@ class ReviewAgent:
             return "down"
         return "flat"
 
+    def _miss_type(
+        self,
+        horizon: str,
+        target_hits: dict[str, float],
+        start_values: dict[str, float],
+        first_day_values: dict[str, float],
+        final_values: dict[str, float],
+        dominant_regime: str,
+    ) -> tuple[str, str]:
+        if all(hit >= 1.0 for hit in target_hits.values()):
+            return "correct", "All tracked Treasury targets moved in the expected direction."
+
+        first_day_hits = {
+            target: float(
+                self._expected_direction(dominant_regime, target, horizon)
+                == self._realized_direction(start_values[target], first_day_values[target])
+            )
+            for target in target_hits
+        }
+
+        yield_hits = [target_hits["yield_2y"], target_hits["yield_10y"]]
+        if first_day_hits["yield_2y"] + first_day_hits["yield_10y"] >= 1.0 and sum(yield_hits) == 0:
+            return "wrong_persistence", "The initial move aligned with the call, but the horizon follow-through did not persist."
+
+        if sum(yield_hits) == 0:
+            return "wrong_regime_direction", "Front-end and long-end direction both contradicted the dominant regime call."
+
+        if first_day_hits["curve_2s10s"] == 1.0 and target_hits["curve_2s10s"] == 0.0:
+            return "wrong_persistence", "The curve initially behaved as expected, but that transmission faded over the review horizon."
+
+        if target_hits["curve_2s10s"] == 0.0 and sum(yield_hits) >= 1.0:
+            return "wrong_transmission", "Rate direction was partly right, but the curve transmission was wrong."
+
+        if horizon != "short" and sum(first_day_hits.values()) > sum(target_hits.values()):
+            return "wrong_persistence", "The short-horizon direction looked right, but the move did not hold through the target horizon."
+
+        return "mixed_miss", "The regime call captured part of the move, but the realized path was mixed across targets."
+
     def run(self, market_data: pd.DataFrame, posterior_history: pd.DataFrame, evidence_frame: pd.DataFrame) -> ReviewBundle:
         market_data = market_data.sort_index()
         posterior_history = posterior_history.sort_index()
@@ -42,27 +80,65 @@ class ReviewAgent:
         for horizon, days in horizon_days.items():
             for date in posterior_history.index[:-days]:
                 future_date = posterior_history.index[posterior_history.index.get_loc(date) + days]
+                first_day_date = posterior_history.index[posterior_history.index.get_loc(date) + 1]
                 dominant_regime = posterior_history.loc[date, f"{horizon}_dominant_regime"]
                 directional_hits = []
+                hit_map: dict[str, float] = {}
+                start_values: dict[str, float] = {}
+                first_day_values: dict[str, float] = {}
+                final_values: dict[str, float] = {}
                 for target in targets:
+                    start_value = float(market_data.loc[date, target])
+                    final_value = float(market_data.loc[future_date, target])
                     expected = self._expected_direction(str(dominant_regime), target, horizon)
                     realized = self._realized_direction(
-                        float(market_data.loc[date, target]),
-                        float(market_data.loc[future_date, target]),
+                        start_value,
+                        final_value,
                     )
-                    directional_hits.append(float(expected == realized))
+                    hit = float(expected == realized)
+                    directional_hits.append(hit)
+                    hit_map[target] = hit
+                    start_values[target] = start_value
+                    first_day_values[target] = float(market_data.loc[first_day_date, target])
+                    final_values[target] = final_value
+
+                miss_type, miss_note = self._miss_type(
+                    horizon,
+                    hit_map,
+                    start_values,
+                    first_day_values,
+                    final_values,
+                    str(dominant_regime),
+                )
                 score_rows.append(
                     {
                         "forecast_date": date,
                         "target_horizon": horizon,
                         "dominant_regime": dominant_regime,
                         "directional_accuracy": float(np.mean(directional_hits)),
+                        "yield_2y_hit": hit_map["yield_2y"],
+                        "yield_10y_hit": hit_map["yield_10y"],
+                        "curve_2s10s_hit": hit_map["curve_2s10s"],
+                        "miss_type": miss_type,
+                        "miss_note": miss_note,
                     }
                 )
 
         regime_scores = pd.DataFrame(score_rows)
         if regime_scores.empty:
-            regime_scores = pd.DataFrame(columns=["forecast_date", "target_horizon", "dominant_regime", "directional_accuracy"])
+            regime_scores = pd.DataFrame(
+                columns=[
+                    "forecast_date",
+                    "target_horizon",
+                    "dominant_regime",
+                    "directional_accuracy",
+                    "yield_2y_hit",
+                    "yield_10y_hit",
+                    "curve_2s10s_hit",
+                    "miss_type",
+                    "miss_note",
+                ]
+            )
 
         source_rows: list[dict[str, object]] = []
         if not evidence_frame.empty:

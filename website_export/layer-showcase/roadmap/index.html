@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Roadmap | Treasury Regime Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body data-page="roadmap">
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="/">Treasury Regime Lab</a>
+        <nav class="site-nav">
+          <a href="/">Home</a>
+          <a href="/framework/">Framework</a>
+          <a href="/primer/">Primer</a>
+          <a href="/roadmap/">Roadmap</a>
+          <a href="/archive/">Archive</a>
+          <a href="/research/">Research</a>
+          <a href="/resume/docs/" target="_blank" rel="noreferrer">Resume</a>
+        </nav>
+      </header>
+
+      <main class="main-layout">
+        <section class="hero-panel hero-panel-narrow">
+          <div class="hero-copy">
+            <span class="eyebrow">Version map</span>
+            <h1>Version 1 hierarchy, known limits, and the next upgrade queue.</h1>
+            <p class="lede">
+              This page tracks what the system already does, where the weak points are,
+              and what should be improved next. The roadmap is organized by layer so future
+              changes stay coherent with the research architecture.
+            </p>
+          </div>
+        </section>
+
+        <section class="summary-grid" id="roadmap-summary"></section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <span class="section-tag">Hierarchy</span>
+            <h2>Layer-by-layer research map</h2>
+          </div>
+          <div id="roadmap-layers" class="regime-card-grid"></div>
+        </section>
+
+        <section class="section-grid section-grid-wide">
+          <article class="panel">
+            <div class="panel-header">
+              <span class="section-tag">Upgrade queue</span>
+              <h2>Tracked changes for the next versions</h2>
+            </div>
+            <div id="roadmap-upgrades"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <span class="section-tag">Maintenance rule</span>
+              <h2>How future problems should be logged</h2>
+            </div>
+            <div id="roadmap-rules" class="narrative-note"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>
